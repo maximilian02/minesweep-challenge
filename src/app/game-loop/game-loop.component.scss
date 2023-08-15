@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.minesweeper-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 2px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  /* Add more styling based on cell state and game state */
+}
+
+.revealed {
+  background-color: #e0e0e0;
+  cursor: default;
+  border-color: #ccc;
+}
+
+.flagged {
+  background-color: #f0e68c;
+  cursor: default;
+  padding: 2px;
+}
+
+.hidden:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.hidden::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #999;
+  border-radius: 50%;
+  opacity: 0.6;
+  display: none;
+}
+
+.hidden:hover::before {
+  display: block;
+}
+
+.reset {
+  appearance: button;
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 30%;
+  margin-top: 8px;
+}
+
+.reset:after {
+  background-clip: padding-box;
+  background-color: #1cb0f6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.reset:main,
+.reset:focus {
+  user-select: auto;
+}
+
+.reset:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.reset:disabled {
+  cursor: auto;
+}

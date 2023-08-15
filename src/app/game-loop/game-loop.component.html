@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 class="board-title">Minesweeper Board</h1>
+  <div class="minesweeper-frame">
+    <div class="minesweeper-board">
+      <div class="row" *ngFor="let row of board; let rowIndex = index">
+        <div class="cell" *ngFor="let cell of row; let colIndex = index">
+          <!-- Display cell content based on cell state -->
+          <!-- For example: -->
+          <div
+            class="cell-content"
+            (click)="revealCell(rowIndex, colIndex)"
+            (contextmenu)="flagCell(rowIndex, colIndex)"
+            [ngClass]="{
+              hidden: cell.state === 0,
+              revealed: cell.state === 1,
+              flagged: cell.state === 2
+            }"
+          >
+            <!-- Display cell content based on game state -->
+            <ng-container *ngIf="cell.state === 1">
+              <!-- Revealed cell content -->
+              <ng-container *ngIf="cell.hasMine">
+                <!-- Cell contains a mine -->
+                <app-bomb style="width: 100%"></app-bomb>
+              </ng-container>
+              <ng-container *ngIf="!cell.hasMine && cell.count > 0">
+                <!-- Cell doesn't have a mine and has adjacent mines -->
+                {{ cell.count }}
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="cell.state === 2">
+              <!-- Flagged cell content -->
+              <app-flag style="width: 100%"></app-flag>
+            </ng-container>
+            <ng-container *ngIf="cell.state === 0">
+              <!-- Hidden cell content (e.g., empty) -->
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="reset" (click)="resetGame()">Reset game</button>
+</div>
